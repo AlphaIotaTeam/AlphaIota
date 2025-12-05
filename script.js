@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitText.classList.add('hidden');
         submitLoader.classList.remove('hidden');
 
-        // Simulate form submission (replace with actual API call)
+        // Prepare form data for submission
         try {
             // Get form data
             const formData = {
@@ -115,19 +115,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 message: document.getElementById('message').value
             };
 
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // API endpoint - Update this with your actual endpoint URL
+            const apiEndpoint = 'https://n8nalphaiota2.zapto.org/webhook-test/AlphaIota/orderForm'; // Replace with your actual API endpoint
 
-            // In a real application, you would make an actual API call here:
-            // const response = await fetch('/api/submit', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
-            // const result = await response.json();
+            // Make POST request
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-            // For demo purposes, we'll simulate success
-            console.log('Form submitted:', formData);
+            // Check if request was successful
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Form submitted successfully:', result);
 
             // Show success message
             successMessage.classList.remove('hidden');
@@ -144,6 +151,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Form submission error:', error);
             errorMessage.classList.remove('hidden');
+            
+            // Scroll to error message
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Hide error message after 5 seconds
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 5000);
         } finally {
             // Reset button state
             submitBtn.disabled = false;
