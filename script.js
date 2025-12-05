@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // API endpoint - Update this with your actual endpoint URL
-            const apiEndpoint = 'https://n8nalphaiota2.zapto.org/webhook-test/AlphaIota/orderForm'; // Replace with your actual API endpoint
+            const apiEndpoint = 'https://n8nalphaiota2.zapto.org/webhook/AlphaIota/orderForm'; // Replace with your actual API endpoint
 
             // Make POST request
             const response = await fetch(apiEndpoint, {
