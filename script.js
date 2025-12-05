@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bookCallBtn.addEventListener('click', function() {
             // You can replace this with your actual booking system URL
             // For example: Calendly, Cal.com, or your custom booking page
-            const bookingUrl = 'https://calendly.com/your-link'; // Replace with your actual booking link
+            const bookingUrl = 'https://calendly.com/alphaiotascraper/30min'; // Replace with your actual booking link
             
             // Option 1: Open in new tab
             window.open(bookingUrl, '_blank');
