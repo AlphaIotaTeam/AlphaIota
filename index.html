@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaIota - Automation as a Service (AaaS)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(147, 51, 234, 0.6); }
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .animate-scroll {
+            animation: scroll 40s linear infinite;
+        }
+        .case-studies-container {
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .case-studies-track {
+            display: flex;
+            width: fit-content;
+        }
+        .case-study-card {
+            flex-shrink: 0;
+            width: 400px;
+            margin-right: 24px;
+        }
+        @media (max-width: 768px) {
+            .case-study-card {
+                width: 320px;
+                margin-right: 16px;
+            }
+        }
+        /* Flip Card Styles */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        /* Creative staggered layout */
+        .team-card-1 {
+            transform: rotate(-2deg);
+            margin-top: 0;
+        }
+        .team-card-2 {
+            transform: rotate(1.5deg);
+            margin-top: 40px;
+        }
+        .team-card-3 {
+            transform: rotate(-1deg);
+            margin-top: 20px;
+        }
+        .team-card-4 {
+            transform: rotate(2deg);
+            margin-top: 60px;
+        }
+        .flip-card.flipped .team-card-1,
+        .flip-card.flipped .team-card-2,
+        .flip-card.flipped .team-card-3,
+        .flip-card.flipped .team-card-4 {
+            transform: rotate(0deg);
+        }
+        @media (max-width: 768px) {
+            .team-card-1,
+            .team-card-2,
+            .team-card-3,
+            .team-card-4 {
+                transform: rotate(0deg);
+                margin-top: 0;
+            }
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-slate-900/90 backdrop-blur-md border-b border-purple-500/20 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <img src="aialphaiota_logo.jpeg" alt="AlphaIota Logo" class="h-12 w-auto">
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-300 hover:text-purple-400 transition">Services</a>
+                    <a href="#team" class="text-gray-300 hover:text-purple-400 transition">Team</a>
+                    <a href="#case-studies" class="text-gray-300 hover:text-purple-400 transition">Case Studies</a>
+                    <a href="#contact" class="text-gray-300 hover:text-purple-400 transition">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div class="text-center mb-16 animate-fade-in-up">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                Automation as a Service
+                <span class="block gradient-text">(AaaS)</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Done-for-you automations without heavy upfront investment. 
+                <span class="text-purple-400 font-semibold">Pay post-project.</span>
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <div class="flex items-center bg-slate-800/50 px-6 py-3 rounded-lg border border-purple-500/30">
+                    <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-300">CRM & Lead Management</span>
+                </div>
+                <div class="flex items-center bg-slate-800/50 px-6 py-3 rounded-lg border border-purple-500/30">
+                    <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-300">AI Communication</span>
+                </div>
+                <div class="flex items-center bg-slate-800/50 px-6 py-3 rounded-lg border border-purple-500/30">
+                    <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-300">Web Scraping & Data Pipelines</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section id="services" class="mt-20 md:mt-32 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our AaaS Packages</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg">Choose the automation solution that fits your needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Package 1 -->
+                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">CRM & Lead Integration</h3>
+                    <p class="text-gray-400 text-sm mb-4">Connect lead sources to your CRM automatically</p>
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold text-purple-400">$1,500</span>
+                        <span class="text-gray-400 text-sm"> - $2,100</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-4">20-30 hours</p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>1-2 lead sources (Guesty, Facebook, Forms)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Real-time sync to HubSpot</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Lead Scraping & Data Pipeline</h3>
+                    <p class="text-gray-400 text-sm mb-4">Automated lead collection and cleaning</p>
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold text-purple-400">$1,750</span>
+                        <span class="text-gray-400 text-sm"> - $2,450</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-4">25-35 hours</p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Scrape, clean, dedupe leads</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Output to database or Sheets</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">AI Communication & Notification</h3>
+                    <p class="text-gray-400 text-sm mb-4">AI-powered messaging and alerts</p>
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold text-purple-400">$1,600</span>
+                        <span class="text-gray-400 text-sm"> - $2,800</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-4">20-35 hours</p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>AI email replies & triage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>WhatsApp/Slack alerts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Optional AI voice agent</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Content & Video Automation</h3>
+                    <p class="text-gray-400 text-sm mb-4">Automated video processing & content</p>
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold text-purple-400">$2,000+</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-4">Custom scope</p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Auto-cut videos & transcribe</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>AI script generation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Multi-platform export</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hour Blocks -->
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold text-white mb-8">Or Choose Hour Blocks</h3>
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-white mb-2">20 Hours</h4>
+                        <p class="text-3xl font-bold text-purple-400 mb-2">$1,500</p>
+                        <p class="text-sm text-gray-300">Small, focused project</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-white mb-2">40 Hours</h4>
+                        <p class="text-3xl font-bold text-purple-400 mb-2">$2,800</p>
+                        <p class="text-sm text-gray-300">Medium project or multiple wins</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-white mb-2">80 Hours</h4>
+                        <p class="text-3xl font-bold text-purple-400 mb-2">$5,200</p>
+                        <p class="text-sm text-gray-300">End-to-end automation system</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="mt-20 md:mt-32 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Meet the Team</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg">Click on any card to learn more about their roles and responsibilities</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto relative">
+                <!-- Basilius Peetz -->
+                <div class="flip-card h-[500px] team-card-1 transition-transform duration-300 hover:scale-105">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 rounded-2xl p-8 shadow-lg flex flex-col items-center justify-center border-2 border-indigo-200">
+                            <img src="BasiliusPeetz.png" alt="Basilius Peetz" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-indigo-400 shadow-lg">
+                            <h3 class="text-2xl font-bold text-indigo-900 mb-3">Basilius Peetz</h3>
+                            <span class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">Founder / CEO / Project Manager</span>
+                        </div>
+                        <div class="flip-card-back bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 backdrop-blur-sm border-2 border-indigo-500/50 rounded-2xl p-8 shadow-lg flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold text-white mb-4">Basilius Peetz</h3>
+                            <p class="text-indigo-300 text-base mb-6">Founder / CEO / Project Manager</p>
+                            <div class="space-y-3 text-left">
+                                <p class="text-sm font-semibold text-indigo-300 mb-3">Responsibilities:</p>
+                                <ul class="text-sm text-gray-200 space-y-2">
+                                    <li>• Strategic planning & vision</li>
+                                    <li>• Project management & oversight</li>
+                                    <li>• Business development</li>
+                                    <li>• Team leadership</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Justin Capuli -->
+                <div class="flip-card h-[500px] team-card-2 transition-transform duration-300 hover:scale-105">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-gradient-to-br from-cyan-100 via-blue-100 to-teal-100 rounded-2xl p-8 shadow-lg flex flex-col items-center justify-center border-2 border-cyan-200">
+                            <img src="JustinCapuli.jpeg" alt="Justin Capuli" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-cyan-400 shadow-lg">
+                            <h3 class="text-2xl font-bold text-cyan-900 mb-3">Justin Capuli</h3>
+                            <span class="inline-block bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">Automation Engineer & Full-Stack Developer</span>
+                        </div>
+                        <div class="flip-card-back bg-gradient-to-br from-cyan-900 via-blue-900 to-slate-900 backdrop-blur-sm border-2 border-cyan-500/50 rounded-2xl p-8 shadow-lg flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold text-white mb-4">Justin Capuli</h3>
+                            <p class="text-cyan-300 text-base mb-6">Automation Engineer & Full-Stack Developer</p>
+                            <div class="space-y-3 text-left">
+                                <p class="text-sm font-semibold text-cyan-300 mb-3">Focus Areas:</p>
+                                <ul class="text-sm text-gray-200 space-y-2">
+                                    <li>• Make / n8n / Zapier workflows</li>
+                                    <li>• CRM integrations (HubSpot)</li>
+                                    <li>• Email automation + Python/Flask</li>
+                                    <li>• Web scraping & data pipelines</li>
+                                    <li>• AI content + video workflows</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rafael Bashan -->
+                <div class="flip-card h-[500px] team-card-3 transition-transform duration-300 hover:scale-105">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100 rounded-2xl p-8 shadow-lg flex flex-col items-center justify-center border-2 border-emerald-200">
+                            <img src="RafaelBashan.jpeg" alt="Rafael Bashan" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-emerald-400 shadow-lg">
+                            <h3 class="text-2xl font-bold text-emerald-900 mb-3">Rafael Bashan</h3>
+                            <span class="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">AI Automation & Voice Systems Specialist</span>
+                        </div>
+                        <div class="flip-card-back bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 backdrop-blur-sm border-2 border-emerald-500/50 rounded-2xl p-8 shadow-lg flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold text-white mb-4">Rafael Bashan</h3>
+                            <p class="text-emerald-300 text-base mb-6">AI Automation & Voice Systems Specialist</p>
+                            <div class="space-y-3 text-left">
+                                <p class="text-sm font-semibold text-emerald-300 mb-3">Focus Areas:</p>
+                                <ul class="text-sm text-gray-200 space-y-2">
+                                    <li>• Workflow automation</li>
+                                    <li>• AI voice agents (Vapi, Twilio)</li>
+                                    <li>• Python scripting + APIs</li>
+                                    <li>• Web scraping</li>
+                                    <li>• Telephony workflows</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cassandra Roxas -->
+                <div class="flip-card h-[500px] team-card-4 transition-transform duration-300 hover:scale-105">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-gradient-to-br from-rose-100 via-pink-100 to-fuchsia-100 rounded-2xl p-8 shadow-lg flex flex-col items-center justify-center border-2 border-rose-200">
+                            <img src="CassandraRoxas.png" alt="Cassandra Roxas" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-rose-400 shadow-lg">
+                            <h3 class="text-2xl font-bold text-rose-900 mb-3">Cassandra Roxas</h3>
+                            <span class="inline-block bg-gradient-to-r from-rose-600 to-pink-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">Data & Automation Engineer</span>
+                        </div>
+                        <div class="flip-card-back bg-gradient-to-br from-rose-900 via-pink-900 to-slate-900 backdrop-blur-sm border-2 border-rose-500/50 rounded-2xl p-8 shadow-lg flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold text-white mb-4">Cassandra Roxas</h3>
+                            <p class="text-rose-300 text-base mb-6">Data & Automation Engineer</p>
+                            <div class="space-y-3 text-left">
+                                <p class="text-sm font-semibold text-rose-300 mb-3">Focus Areas:</p>
+                                <ul class="text-sm text-gray-200 space-y-2">
+                                    <li>• Data processing + SQL</li>
+                                    <li>• Automation workflows (Make, n8n)</li>
+                                    <li>• ML model prototyping</li>
+                                    <li>• Documentation + dashboards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="mt-20 md:mt-32 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Success Stories</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg">Real results from real clients</p>
+            </div>
+            
+            <div class="case-studies-container">
+                <div class="case-studies-track animate-scroll">
+                    <!-- First Set of Cards -->
+                    <!-- Case Study 1 -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Property Management - Guesty to HubSpot Sync</h3>
+                                <p class="text-purple-400 text-sm mb-2">CRM & Lead Integration</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">100%</p>
+                                <p class="text-xs text-gray-400">Automation</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Bookings tracked only in Guesty. Manual copy-paste to HubSpot caused outdated pipelines and missed revenue.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Built Make/n8n flow syncing Guesty bookings to HubSpot Deals in real-time.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Sales and operations now have one shared source of truth. Zero manual encoding.</p>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">AI Voice Receptionist - Luxe Roofing</h3>
+                                <p class="text-purple-400 text-sm mb-2">AI Communication & Voice Systems</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">24/7</p>
+                                <p class="text-xs text-gray-400">Availability</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Missing calls after hours, slow response times, inconsistent caller experience.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Fully automated AI Voice Receptionist using Vapi Voice, Make.com, and Airtable that answers, qualifies, and routes calls end-to-end.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Never miss a call. Consistent professional experience. All activity automatically logged.</p>
+                    </div>
+
+                    <!-- Case Study 3 -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">HubSpot → AI Intro Email Generator</h3>
+                                <p class="text-purple-400 text-sm mb-2">AI Communication & Automation</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">Faster</p>
+                                <p class="text-xs text-gray-400">Response Time</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Sales reps spending too much time drafting emails. Inconsistent tone and messaging.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> AI-driven workflow monitoring HubSpot for new leads, generating personalized intro emails automatically using OpenAI.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Sales reps spend time sending, not writing. Consistent messaging across entire team.</p>
+                    </div>
+
+                    <!-- Case Study 4 -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">TrendForge - AI Content Automation Suite</h3>
+                                <p class="text-purple-400 text-sm mb-2">Content & Video Automation</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">Scale</p>
+                                <p class="text-xs text-gray-400">Content Production</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Custom full-stack web app that transforms simple inputs into ready-to-publish social media content. Auto-generates reels, images, and smart video chunking.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Turn one idea into a finished reel in minutes. Non-designers create on-brand visuals from a sentence.</p>
+                    </div>
+
+                    <!-- Duplicate Set for Seamless Loop -->
+                    <!-- Case Study 1 (Duplicate) -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Property Management - Guesty to HubSpot Sync</h3>
+                                <p class="text-purple-400 text-sm mb-2">CRM & Lead Integration</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">100%</p>
+                                <p class="text-xs text-gray-400">Automation</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Bookings tracked only in Guesty. Manual copy-paste to HubSpot caused outdated pipelines and missed revenue.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Built Make/n8n flow syncing Guesty bookings to HubSpot Deals in real-time.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Sales and operations now have one shared source of truth. Zero manual encoding.</p>
+                    </div>
+
+                    <!-- Case Study 2 (Duplicate) -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">AI Voice Receptionist - Luxe Roofing</h3>
+                                <p class="text-purple-400 text-sm mb-2">AI Communication & Voice Systems</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">24/7</p>
+                                <p class="text-xs text-gray-400">Availability</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Missing calls after hours, slow response times, inconsistent caller experience.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Fully automated AI Voice Receptionist using Vapi Voice, Make.com, and Airtable that answers, qualifies, and routes calls end-to-end.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Never miss a call. Consistent professional experience. All activity automatically logged.</p>
+                    </div>
+
+                    <!-- Case Study 3 (Duplicate) -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">HubSpot → AI Intro Email Generator</h3>
+                                <p class="text-purple-400 text-sm mb-2">AI Communication & Automation</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">Faster</p>
+                                <p class="text-xs text-gray-400">Response Time</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Problem:</strong> Sales reps spending too much time drafting emails. Inconsistent tone and messaging.</p>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> AI-driven workflow monitoring HubSpot for new leads, generating personalized intro emails automatically using OpenAI.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Sales reps spend time sending, not writing. Consistent messaging across entire team.</p>
+                    </div>
+
+                    <!-- Case Study 4 (Duplicate) -->
+                    <div class="case-study-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 md:p-8 rounded-xl shadow-lg">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">TrendForge - AI Content Automation Suite</h3>
+                                <p class="text-purple-400 text-sm mb-2">Content & Video Automation</p>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-400">Scale</p>
+                                <p class="text-xs text-gray-400">Content Production</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Custom full-stack web app that transforms simple inputs into ready-to-publish social media content. Auto-generates reels, images, and smart video chunking.</p>
+                        <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Turn one idea into a finished reel in minutes. Non-designers create on-brand visuals from a sentence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="mt-20 md:mt-32 mb-20">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Get Started Today</h2>
+                    <p class="text-gray-300 text-lg">Tell us about your automation needs and we'll get back to you</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Form Section -->
+                    <div class="bg-slate-800/90 backdrop-blur-sm border border-purple-500/30 rounded-2xl shadow-2xl p-8 md:p-10">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
+                                Full Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition outline-none placeholder-gray-400"
+                                placeholder="John Doe"
+                            >
+                            <span class="error-message text-red-400 text-sm mt-1 hidden"></span>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition outline-none placeholder-gray-400"
+                                placeholder="john@example.com"
+                            >
+                            <span class="error-message text-red-400 text-sm mt-1 hidden"></span>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">
+                                Phone Number <span class="text-gray-400 font-normal">(Optional)</span>
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone"
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition outline-none placeholder-gray-400"
+                                placeholder="+1 (555) 123-4567"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-gray-300 mb-2">
+                                Service Interest
+                            </label>
+                            <select 
+                                id="service" 
+                                name="service"
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition outline-none"
+                            >
+                                <option value="">Select a service...</option>
+                                <option value="crm-lead">CRM & Lead Integration</option>
+                                <option value="lead-scraping">Lead Scraping & Data Pipeline</option>
+                                <option value="ai-communication">AI Communication & Notification</option>
+                                <option value="content-video">Content & Video Automation</option>
+                                <option value="hour-block">Hour Block (20/40/80 hours)</option>
+                                <option value="custom">Custom Solution</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">
+                                Tell us about your automation needs
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5"
+                                required
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition outline-none resize-none placeholder-gray-400"
+                                placeholder="Describe your current workflow challenges and what you'd like to automate..."
+                            ></textarea>
+                            <span class="error-message text-red-400 text-sm mt-1 hidden"></span>
+                        </div>
+
+                        <div class="flex items-start">
+                            <input 
+                                type="checkbox" 
+                                id="terms" 
+                                name="terms" 
+                                required
+                                class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-purple-500/50 bg-slate-700/50 rounded"
+                            >
+                            <label for="terms" class="ml-2 text-sm text-gray-300">
+                                I agree to the <a href="#" class="text-purple-400 hover:text-purple-300 hover:underline">Terms and Conditions</a> 
+                                and <a href="#" class="text-purple-400 hover:text-purple-300 hover:underline">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            id="submitBtn"
+                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-purple-500/50 text-lg"
+                        >
+                            <span id="submitText">Get Started with Automation</span>
+                            <span id="submitLoader" class="hidden">
+                                <svg class="animate-spin h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Processing...
+                            </span>
+                        </button>
+
+                        <div id="successMessage" class="hidden bg-green-900/50 border border-green-500/50 text-green-300 px-4 py-3 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Thank you! We'll get back to you soon to discuss your automation needs.</span>
+                            </div>
+                        </div>
+
+                        <div id="errorMessage" class="hidden bg-red-900/50 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Something went wrong. Please try again.</span>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+
+                    <!-- Book a Call Section -->
+                    <div class="bg-gradient-to-br from-purple-900/80 to-pink-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl shadow-2xl p-8 md:p-10 flex flex-col justify-center items-center text-center">
+                        <div class="mb-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full flex items-center justify-center mb-6 mx-auto border-2 border-purple-400/50">
+                                <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white mb-4">Prefer to Talk?</h3>
+                            <p class="text-gray-300 text-lg mb-2">Schedule a free consultation call</p>
+                            <p class="text-gray-400 text-sm mb-8">Let's discuss your automation needs in person</p>
+                        </div>
+                        
+                        <div class="w-full space-y-4">
+                            <button 
+                                id="bookCallBtn"
+                                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-900 transition transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-purple-500/50 text-lg flex items-center justify-center gap-3"
+                            >
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Book a Call
+                            </button>
+                            
+                            <div class="pt-6 border-t border-purple-500/30">
+                                <p class="text-gray-400 text-sm mb-4">What to expect:</p>
+                                <ul class="text-left text-gray-300 text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>15-30 minute discovery call</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Discuss your automation goals</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Get a custom solution proposal</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>No obligation, completely free</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950/80 backdrop-blur-sm border-t border-purple-500/20 text-gray-300 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <img src="aialphaiota_logo.jpeg" alt="AlphaIota Logo" class="h-10 w-auto mb-4">
+                    <p class="text-gray-400">Automation as a Service. Building the future of AI, one innovation at a time.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="hover:text-purple-400 transition">Services</a></li>
+                        <li><a href="#team" class="hover:text-purple-400 transition">Team</a></li>
+                        <li><a href="#case-studies" class="hover:text-purple-400 transition">Case Studies</a></li>
+                        <li><a href="#contact" class="hover:text-purple-400 transition">Get Started</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>CRM & Lead Integration</li>
+                        <li>Web Scraping & Data Pipelines</li>
+                        <li>AI Communication</li>
+                        <li>Content & Video Automation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-purple-500/20 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 AlphaIota. All rights reserved. Automation as a Service (AaaS).</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
