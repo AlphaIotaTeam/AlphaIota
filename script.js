@@ -116,11 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // API endpoint - Update this with your actual endpoint URL
-            const apiEndpoint = 'https://n8nalphaiota2.zapto.org/webhook/AlphaIota/orderForm'; // Replace with your actual API endpoint
+            const apiEndpoint = 'https://hook.eu2.make.com/e4a5hex4s6h4emvc1jnk5b5dhhfazy0q'; // Replace with your actual API endpoint
 
-            // Make POST request
+            // Make POST request with CORS mode
             const response = await fetch(apiEndpoint, {
                 method: 'POST',
+                mode: 'cors', // Explicitly set CORS mode
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -130,10 +131,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if request was successful
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('Response error:', response.status, errorText);
+                throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
             }
 
-            const result = await response.json();
+            // Try to parse JSON response, but handle non-JSON responses
+            let result;
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                result = await response.json();
+            } else {
+                result = { success: true, message: await response.text() };
+            }
             console.log('Form submitted successfully:', result);
 
             // Show success message
@@ -150,15 +160,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } catch (error) {
             console.error('Form submission error:', error);
+            console.error('Error details:', {
+                name: error.name,
+                message: error.message,
+                stack: error.stack
+            });
+            
+            // Show more detailed error message
+            const errorText = errorMessage.querySelector('span');
+            if (errorText) {
+                if (error.message.includes('CORS') || error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+                    errorText.textContent = 'Network error: Unable to connect to server. This may be a CORS issue. Please contact support.';
+                } else {
+                    errorText.textContent = `Error: ${error.message}`;
+                }
+            }
+            
             errorMessage.classList.remove('hidden');
             
             // Scroll to error message
             errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             
-            // Hide error message after 5 seconds
+            // Hide error message after 8 seconds (longer for debugging)
             setTimeout(() => {
                 errorMessage.classList.add('hidden');
-            }, 5000);
+            }, 8000);
         } finally {
             // Reset button state
             submitBtn.disabled = false;
