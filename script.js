@@ -324,23 +324,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Make packages & hour blocks scroll to form and prefill service
+    const serviceSelect = document.getElementById('service');
+    const contactSection = document.getElementById('contact');
+    document.querySelectorAll('.js-package-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const value = card.getAttribute('data-service');
+            if (serviceSelect && value && serviceSelect.querySelector(`option[value="${value}"]`)) {
+                serviceSelect.value = value;
+            }
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
     // Book a Call button functionality
     const bookCallBtn = document.getElementById('bookCallBtn');
     if (bookCallBtn) {
         bookCallBtn.addEventListener('click', function() {
-            // You can replace this with your actual booking system URL
-            // For example: Calendly, Cal.com, or your custom booking page
             const bookingUrl = 'https://calendly.com/alphaiotascraper/30min'; // Replace with your actual booking link
-            
-            // Option 1: Open in new tab
             window.open(bookingUrl, '_blank');
-            
-            // Option 2: Or redirect to booking page
-            // window.location.href = bookingUrl;
-            
-            // Option 3: Or show a modal/alert
-            // alert('Redirecting to booking page...');
-            // window.location.href = bookingUrl;
         });
     }
 });

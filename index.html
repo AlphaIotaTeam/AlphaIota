@@ -160,14 +160,24 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div class="text-center mb-16 animate-fade-in-up">
             <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Automation as a Service
+                AlphaIota — Automation as a Service
                 <span class="block gradient-text">(AaaS)</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Done-for-you automations without heavy upfront investment. 
-                <span class="text-purple-400 font-semibold">Pay post-project.</span>
+            <p class="text-xl md:text-2xl text-gray-300 mb-6 max-w-3xl mx-auto">
+                Done-for-you automations across CRM, AI communication, data pipelines, and content ops —
+                <span class="text-purple-400 font-semibold">pay after delivery in 20 / 40 / 80-hour blocks.</span>
             </p>
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
+            <ul class="space-y-2 text-gray-200 max-w-2xl mx-auto text-left md:text-center">
+                <li class="flex md:justify-center items-start">
+                    <span class="text-green-400 mr-2">●</span>
+                    <span>Short-term revenue via tightly scoped workflow automation, AI, and data pipelines.</span>
+                </li>
+                <li class="flex md:justify-center items-start">
+                    <span class="text-green-400 mr-2">●</span>
+                    <span>Clear discovery → build → testing → launch process with documentation and training.</span>
+                </li>
+            </ul>
+            <div class="flex flex-wrap justify-center gap-6 mt-10">
                 <div class="flex items-center bg-slate-800/50 px-6 py-3 rounded-lg border border-purple-500/30">
                     <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -178,7 +188,7 @@
                     <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
-                    <span class="text-gray-300">AI Communication</span>
+                    <span class="text-gray-300">AI Communication (Email + Voice)</span>
                 </div>
                 <div class="flex items-center bg-slate-800/50 px-6 py-3 rounded-lg border border-purple-500/30">
                     <svg class="w-6 h-6 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -189,6 +199,28 @@
             </div>
         </div>
 
+        <!-- Quick Overview Cards -->
+        <section class="mt-12 grid md:grid-cols-3 gap-4">
+            <div class="bg-slate-800/70 border border-purple-500/30 rounded-2xl p-5 text-left">
+                <p class="text-xs uppercase tracking-wide text-purple-300 mb-1">Context</p>
+                <p class="text-sm text-gray-200">
+                    Shifting from one big client to a repeatable AaaS model, focused on short-term, block-based projects.
+                </p>
+            </div>
+            <div class="bg-slate-800/70 border border-purple-500/30 rounded-2xl p-5 text-left">
+                <p class="text-xs uppercase tracking-wide text-purple-300 mb-1">Service Model</p>
+                <p class="text-sm text-gray-200">
+                    Repeatable AaaS built around workflow automation, AI, and data pipelines.
+                </p>
+            </div>
+            <div class="bg-slate-800/70 border border-purple-500/30 rounded-2xl p-5 text-left">
+                <p class="text-xs uppercase tracking-wide text-purple-300 mb-1">Core Offer</p>
+                <p class="text-sm text-gray-200">
+                    CRM, AI comms, scraping, and content ops — delivered in <span class="font-semibold text-purple-300">20 / 40 / 80 hr</span> pay-after blocks.
+                </p>
+            </div>
+        </section>
+
         <!-- Services Section -->
         <section id="services" class="mt-20 md:mt-32 mb-20">
             <div class="text-center mb-12">
@@ -198,7 +230,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <!-- Package 1 -->
-                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                <div class="service-card js-package-card cursor-pointer bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60" data-service="crm-lead">
                     <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
                         <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
@@ -228,7 +260,7 @@
                 </div>
 
                 <!-- Package 2 -->
-                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                <div class="service-card js-package-card cursor-pointer bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60" data-service="lead-scraping">
                     <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
                         <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -258,7 +290,7 @@
                 </div>
 
                 <!-- Package 3 -->
-                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                <div class="service-card js-package-card cursor-pointer bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60" data-service="ai-communication">
                     <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
                         <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
@@ -294,7 +326,7 @@
                 </div>
 
                 <!-- Package 4 -->
-                <div class="service-card bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60">
+                <div class="service-card js-package-card cursor-pointer bg-slate-800/60 backdrop-blur-sm border border-purple-500/20 p-6 rounded-xl shadow-lg hover:border-purple-500/60" data-service="content-video">
                     <div class="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
                         <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -333,21 +365,44 @@
             <div class="mt-12 text-center">
                 <h3 class="text-2xl font-bold text-white mb-8">Or Choose Hour Blocks</h3>
                 <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                    <div class="js-package-card cursor-pointer bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl" data-service="hour-block">
                         <h4 class="text-xl font-bold text-white mb-2">20 Hours</h4>
                         <p class="text-3xl font-bold text-purple-400 mb-2">$1,500</p>
                         <p class="text-sm text-gray-300">Small, focused project</p>
                     </div>
-                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                    <div class="js-package-card cursor-pointer bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl" data-service="hour-block">
                         <h4 class="text-xl font-bold text-white mb-2">40 Hours</h4>
                         <p class="text-3xl font-bold text-purple-400 mb-2">$2,800</p>
                         <p class="text-sm text-gray-300">Medium project or multiple wins</p>
                     </div>
-                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl">
+                    <div class="js-package-card cursor-pointer bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/40 p-6 rounded-xl" data-service="hour-block">
                         <h4 class="text-xl font-bold text-white mb-2">80 Hours</h4>
                         <p class="text-3xl font-bold text-purple-400 mb-2">$5,200</p>
                         <p class="text-sm text-gray-300">End-to-end automation system</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Transformations (Lightweight) -->
+        <section class="mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">What Changes For You</h2>
+            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <h3 class="text-white font-semibold mb-2 text-sm">CRM & Leads</h3>
+                    <p class="text-gray-300">Manual copy/paste → leads auto-routed into CRM with alerts.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <h3 class="text-white font-semibold mb-2 text-sm">Lead Data</h3>
+                    <p class="text-gray-300">Ad-hoc scraping → clean, deduped lists always ready to use.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <h3 class="text-white font-semibold mb-2 text-sm">AI Communication</h3>
+                    <p class="text-gray-300">Inbox chaos → AI triage + replies with instant team notifications.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <h3 class="text-white font-semibold mb-2 text-sm">Content & Video</h3>
+                    <p class="text-gray-300">Hand-edited clips → automated pipelines for reels and posts.</p>
                 </div>
             </div>
         </section>
@@ -456,6 +511,38 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Team Skills Matrix -->
+        <section class="mt-12 bg-slate-900/70 border border-purple-500/30 rounded-2xl p-8 md:p-10">
+            <h2 class="text-3xl font-bold text-white mb-4">Team Skills Matrix</h2>
+            <p class="text-gray-300 mb-4 text-sm md:text-base">Who leads what inside AlphaIota.</p>
+            <div class="overflow-x-auto text-sm text-gray-200">
+                <table class="min-w-full border border-purple-500/30 rounded-lg overflow-hidden">
+                    <thead class="bg-slate-800/80 text-white">
+                        <tr>
+                            <th class="px-4 py-3 text-left">Capability / Tool</th>
+                            <th class="px-4 py-3 text-left">Justin</th>
+                            <th class="px-4 py-3 text-left">Raphael</th>
+                            <th class="px-4 py-3 text-left">Cassandra</th>
+                            <th class="px-4 py-3 text-left">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-purple-500/20">
+                        <tr><td class="px-4 py-3">Make / Zapier orchestration</td><td>High</td><td>Medium</td><td>Medium</td><td>Justin lead</td></tr>
+                        <tr><td class="px-4 py-3">n8n workflows</td><td>High</td><td>Medium</td><td>Medium</td><td>For complex flows</td></tr>
+                        <tr><td class="px-4 py-3">HubSpot & CRM integrations</td><td>High</td><td>Medium</td><td>Medium</td><td>Justin leads CRM work</td></tr>
+                        <tr><td class="px-4 py-3">Web scraping</td><td>High</td><td>Medium</td><td>Medium</td><td>Justin & Cassandra lead</td></tr>
+                        <tr><td class="px-4 py-3">Python backend & APIs</td><td>High</td><td>Low</td><td>High</td><td>Justin & Cassandra lead</td></tr>
+                        <tr><td class="px-4 py-3">AI email/content automation</td><td>High</td><td>Medium</td><td>Medium</td><td>Justin leads</td></tr>
+                        <tr><td class="px-4 py-3">AI voice agents</td><td>Medium</td><td>High</td><td>Low</td><td>Raphael primary</td></tr>
+                        <tr><td class="px-4 py-3">Data engineering & SQL</td><td>Medium</td><td>Medium</td><td>High</td><td>Cassandra leads</td></tr>
+                        <tr><td class="px-4 py-3">Machine learning basics</td><td>Medium</td><td>Medium</td><td>High</td><td>Cassandra leads</td></tr>
+                        <tr><td class="px-4 py-3">Video automation</td><td>High</td><td>Medium</td><td>Low</td><td>Justin leads</td></tr>
+                        <tr><td class="px-4 py-3">Documentation & SOPs</td><td>Medium</td><td>Medium</td><td>High</td><td>Cassandra leads</td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -739,6 +826,29 @@
                         <p class="text-gray-300 mb-3 text-sm"><strong class="text-white">Solution:</strong> Custom full-stack web app that transforms simple inputs into ready-to-publish social media content. Auto-generates reels, images, and smart video chunking.</p>
                         <p class="text-gray-300 text-sm"><strong class="text-white">Impact:</strong> Turn one idea into a finished reel in minutes. Non-designers create on-brand visuals from a sentence.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Deliver -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">How We Work Together</h2>
+            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <p class="text-purple-300 text-xs font-semibold mb-1 uppercase tracking-wide">1. Discover</p>
+                    <p class="text-gray-300">Short workshop to map your current tools, pain points, and ideal outcomes.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <p class="text-purple-300 text-xs font-semibold mb-1 uppercase tracking-wide">2. Design</p>
+                    <p class="text-gray-300">We sketch the future workflow, estimate hours, and lock a 20 / 40 / 80-hour block.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <p class="text-purple-300 text-xs font-semibold mb-1 uppercase tracking-wide">3. Build & Test</p>
+                    <p class="text-gray-300">We implement and test flows end-to-end, starting with the highest-value units.</p>
+                </div>
+                <div class="bg-slate-900/70 border border-purple-500/30 rounded-2xl p-4">
+                    <p class="text-purple-300 text-xs font-semibold mb-1 uppercase tracking-wide">4. Launch</p>
+                    <p class="text-gray-300">Go live, monitor runs, train your team, and hand over SOPs and access.</p>
                 </div>
             </div>
         </section>
